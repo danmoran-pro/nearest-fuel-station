@@ -4,13 +4,14 @@ describe "As a user" do
   describe "visit '/', I see a dropdown menu and select select 'Turing'" do
     it "I click 'find ...', I should be on page '/search', and see the closest electric fuel station to me" do 
   
-    station = Station.create({name: "", address: "", fuel_type: "", access_time: ""})
+    station = Station.create({name: "", address: "", fuel_type: "", access_days_time_fr: ""})
     
     visit '/'
 
     select 'Turing', from: :location
     click_on "Find Nearest Station"
 
+    expect(current_path).to eq(search_path)
   
     expect(page).to have_css('.station')
     expect(page).to have_css('.station-name')
